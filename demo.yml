@@ -9,5 +9,5 @@
        app_settings:
          testkey: testvalue
        frameworks:
-         - name: "node"
-           version: "6.6"
+         - name: "php"
+           version: "7.3"
