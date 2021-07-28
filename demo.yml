@@ -5,7 +5,7 @@
      azure_rm_webapp:
        resource_group: dinesh
        name: myWinWebapptestdemo123
-       plan: test-plan
+       plan: demo
        app_settings:
          testkey: testvalue
        frameworks:
