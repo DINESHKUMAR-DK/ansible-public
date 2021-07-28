@@ -4,7 +4,8 @@
    - name: Create App Service
      azure_rm_webapp:
        resource_group: dinesh
-       name: myWinWebapptestdemo
+       name: myWinWebapptestdemo123
+       wait: true
        plan: test-plan
        app_settings:
          testkey: testvalue
