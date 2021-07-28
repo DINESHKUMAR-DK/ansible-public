@@ -1,0 +1,15 @@
+  
+- hosts: localhost
+  tasks:
+   - name: Create App Service
+     azure_rm_webapp:
+       resource_group: dinesh
+       name: myWinWebapptestdemo
+       plan:
+         resource_group: dinesh
+         name: test-plan
+       app_settings:
+         testkey: testvalue
+       frameworks:
+         - name: "php"
+           version: "7.4"
