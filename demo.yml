@@ -2,13 +2,12 @@
 - hosts: localhost
   tasks:
    - name: Create App Service
-     azure_rm_webapp:
+     azure.azcollection.azure_rm_webapp:
        resource_group: dinesh
        name: myWinWebapptestdemo123
-       wait: true
        plan: test-plan
        app_settings:
          testkey: testvalue
        frameworks:
-         - name: "php"
-           version: "7.4"
+         - name: "python"
+           version: "7.0"
