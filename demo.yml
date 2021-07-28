@@ -9,5 +9,5 @@
        app_settings:
          testkey: testvalue
        frameworks:
-         - name: "python"
-           version: "7.0"
+         - name: "node"
+           version: "6.6"
