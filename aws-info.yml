@@ -1,0 +1,16 @@
+- hosts: all
+  vars:
+    # Global Vars
+    STATE: present
+    REGION: ap-south-1
+
+    # General Vars
+
+
+  tasks:
+   - name: Gather info about instances
+     plugin: aws_ec2
+     regions:
+     - us-east-1
+     - ca-central-1
+     - ap-south-1
