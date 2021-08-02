@@ -1,7 +1,5 @@
-- hosts: localhost
+- hosts: all
   tasks:
      plugin: aws_ec2
      regions:
-       - us-east-1
-       - ca-central-1
        - ap-south-1
