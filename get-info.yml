@@ -15,8 +15,14 @@
       
     - name: Gather s3 bukets Info  
       aws_s3_bucket_info:
-      register: result
+      register: s3_buckets_info
+      
+    - name: Gather Cloudfront info
+      cloudfront_info:
+        summary: true
+      register: cloud_front_info
+      
     - debug:
-        msg: " {{vpc_info}} {{result}}"
+        msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}}"
         
        
