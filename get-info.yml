@@ -72,5 +72,10 @@
         region: "{{REGION}}"
       register: all_rds_instance_info
       
+    - name: List all hosted zones in route53
+      route53_info:
+        query: hosted_zone
+      register: route53_hosted_zones_list
+      
     - debug:
-        msg: " ------ VPC-INFO ----- {{vpc_info}} ------ S3-BUCKETS-INFO ----- {{s3_buckets_info}} ------ CLOUD-FRONT-INFO ----- {{cloud_front_info}} ------ ELB-INFO ----- {{elb_info}} ------ EC2-INSTANCES-INFO ----- {{ec2_instance_list}} ------ IGW-INFO ----- {{igw_info}} ------ NAT-GATEWAY-INFO -----{{nat_gatewy_list}} ------ VPC-PEERING-LIST-INFO -----{{list_all__vpc_peers}} -------VPN_CNN_LIST-INFO ----- {{vpn_cnn_list}} -------EFS-VOL-LIST-INFO ----- {{efs_vol_list_info}} -------IAM-ROLE-LIST-INFO ----- {{iam_role_list_info}} -------LAMBDA-FUNCTION-LIST-INFO -------- {{lambda_function_list}}  ------RDS-INSTANCES-LIST ----- {{all_rds_instance_info}}  ------RDS-INSTANCES-LIST -----"
+        msg: " ------ VPC-INFO ----- {{vpc_info}} ------ S3-BUCKETS-INFO ----- {{s3_buckets_info}} ------ CLOUD-FRONT-INFO ----- {{cloud_front_info}} ------ ELB-INFO ----- {{elb_info}} ------ EC2-INSTANCES-INFO ----- {{ec2_instance_list}} ------ IGW-INFO ----- {{igw_info}} ------ NAT-GATEWAY-INFO -----{{nat_gatewy_list}} ------ VPC-PEERING-LIST-INFO -----{{list_all__vpc_peers}} -------VPN_CNN_LIST-INFO ----- {{vpn_cnn_list}} -------EFS-VOL-LIST-INFO ----- {{efs_vol_list_info}} -------IAM-ROLE-LIST-INFO ----- {{iam_role_list_info}} -------LAMBDA-FUNCTION-LIST-INFO -------- {{lambda_function_list}}  ------RDS-INSTANCES-LIST ----- {{all_rds_instance_info}}  ------ROUTE53-HOSTED-ZONE-LIST -----{{route53_hosted_zones_list}} "
