@@ -9,3 +9,4 @@
 
   tasks:
     - ec2_vpc_net_info:
+        region: "{{REGION}}"
