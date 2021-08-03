@@ -2,17 +2,35 @@
   vars:
     # Global Vars
     STATE: present
-    REGION: 
-     - ap-south-1
-     - us-east-1
+    REGION: ap-south-1
 
     # General Vars
 
 
   tasks:
-    - ec2_vpc_net_info:
+    - name: Get VPC details
+      ec2_vpc_net_info:
         region: "{{REGION}}"
       register: vpc_info
+      
+    - name: gather information about an AMI using ami-id
+      ec2_ami_info:
+        region: "{{REGION}}"
+      register: ami_info
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
     - debug:
         msg: "{{vpc_info}}"
+        
        
