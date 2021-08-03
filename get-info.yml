@@ -26,6 +26,6 @@
       ec2_elb_info:
         region: "{{REGION}}"
       register: elb_info
+      
     - debug:
-        msg: "Testing"
-        loop: "{{ elb_info.elbs }}"
+       - msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}} {{elb_info}}"
