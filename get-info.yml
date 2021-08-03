@@ -18,19 +18,8 @@
         region: "{{REGION}}"
       register: ami_info
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
     - debug:
         msg: "{{vpc_info}}"
+        msg2: "{{ami_info}}"
         
        
