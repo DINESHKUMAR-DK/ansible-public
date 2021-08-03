@@ -27,5 +27,10 @@
         region: "{{REGION}}"
       register: elb_info
       
+    - name: Gather information about all instances
+      ec2_instance_info:
+        region: "{{REGION}}"
+      register: ec2_instance_list
+      
     - debug:
-        msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}} {{elb_info}}"
+        msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}} {{elb_info}} {{ec2_instance_list}}"
