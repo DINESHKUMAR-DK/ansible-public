@@ -58,7 +58,7 @@
       register: efs_vol_list_info
       
     - name: Get IAM user facts
-      iam_user_info:
+      aws.iam_user_info:
       register: iam_users_list_info
       
     - debug:
