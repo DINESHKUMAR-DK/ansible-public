@@ -1,5 +1,4 @@
 - hosts: localhost
-  # Parameter for creating lightsail instance
   vars:
     # Global Vars
     STATE: present
@@ -9,5 +8,4 @@
 
 
   tasks:
-    - amazon.aws.ec2_vpc_net_info:
-      region: "{{REGION}}"
+    - ec2_vpc_net_info:
