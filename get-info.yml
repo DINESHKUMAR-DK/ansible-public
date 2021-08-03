@@ -25,6 +25,6 @@
     - name: Gather information about all ELBs
       ec2_elb_info:
         register: elb_info
-    - ansible.builtin.debug:
+    - debug:
         msg: "{{ item.dns_name }}"
         loop: "{{ elb_info.elbs }}"
