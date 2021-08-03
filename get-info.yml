@@ -21,10 +21,10 @@
       cloudfront_info:
         summary: true
       register: cloud_front_info
-      
-    - debug:
-       - msg: " {{vpc_info}} {{s3_buckets_info}} "
-       - msg: "{{cloud_front_info}}"
-        
-        
-       
+   
+    - name: Gather information about all ELBs
+      community.aws.ec2_elb_info:
+        register: elb_info
+    - ansible.builtin.debug:
+        msg: "{{ item.dns_name }}"
+        loop: "{{ elb_info.elbs }}"
