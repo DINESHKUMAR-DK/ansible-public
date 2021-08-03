@@ -23,7 +23,7 @@
       register: cloud_front_info
    
     - name: Gather information about all ELBs
-      community.aws.ec2_elb_info:
+      ec2_elb_info:
         register: elb_info
     - ansible.builtin.debug:
         msg: "{{ item.dns_name }}"
