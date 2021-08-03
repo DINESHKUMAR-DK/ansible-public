@@ -23,10 +23,6 @@
 #     - debug:
 #         msg: "{{vpc_info}} {{result}}"
       - debug:
-          msg: "
-        {{vpc_info.cider_block}}
-        {{vpc_info.vpc_id}}
-        {{vpc_info.owner_id}}
-        {{result.name}}"
+          msg: " {{vpc_info.cider_block}} {{vpc_info.vpc_id}} {{vpc_info.owner_id}} {{result.name}}"
         
        
