@@ -27,5 +27,5 @@
         region: "{{REGION}}"
       register: elb_info
     - debug:
-        msg: "{{ item.dns_name }}"
+        msg: "Testing"
         loop: "{{ elb_info.elbs }}"
