@@ -2,7 +2,7 @@
   vars:
     # Global Vars
     STATE: present
-    REGION: ap-south-1
+    REGION: ["ap-south-1","us-east-1"]
 
     # General Vars
 
@@ -17,6 +17,6 @@
       aws_s3_bucket_info:
       register: result
     - debug:
-        msg: " {{vpc_info.cider_block}} {{vpc_info.vpc_id}} {{vpc_info.owner_id}} {{result.name}}"
+        msg: " {{vpc_info}} {{result}}"
         
        
