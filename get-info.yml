@@ -37,5 +37,10 @@
         region: "{{REGION}}"
       register: igw_info
       
+    - name: List all managed nat gateways
+      ec2_vpc_nat_gateway_info:
+        region: "{{REGION}}"
+      register: nat_gatewy_list
+      
     - debug:
-        msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}} {{elb_info}} {{ec2_instance_list}} ----------------- {{igw_info}}"
+        msg: " ------ VPC-INFO ----- {{vpc_info}} ------ S3-BUCKETS-INFO ----- {{s3_buckets_info}} ------ CLOUD-FRONT-INFO ----- {{cloud_front_info}} ------ ELB-INFO ----- {{elb_info}} ------ EC2-INSTANCES-INFO ----- {{ec2_instance_list}} ------ IGW-INFO ----- {{igw_info}} ------ NAT-GATEWAY-INFO -----{{nat_gatewy_list}} ------ IGW-INFO -----"
