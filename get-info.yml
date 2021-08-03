@@ -13,13 +13,12 @@
         region: "{{REGION}}"
       register: vpc_info
       
-    - name: gather information about an AMI using ami-id
+    - name: gather information about AMI 
       ec2_ami_info:
         region: "{{REGION}}"
       register: ami_info
       
     - debug:
-        msg: "{{vpc_info}}"
-        msg2: "{{ami_info}}"
+        msg: "{{ami_info}}"
         
        
