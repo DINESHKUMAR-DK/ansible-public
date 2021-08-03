@@ -28,4 +28,4 @@
       register: elb_info
       
     - debug:
-       - msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}} {{elb_info}}"
+        msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}} {{elb_info}}"
