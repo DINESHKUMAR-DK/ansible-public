@@ -20,7 +20,13 @@
 #       ec2_ami_info:
 #         region: "{{REGION}}"
 #       register: ami_info
-    - debug:
-        msg: "{{vpc_info}} {{result}}"
+#     - debug:
+#         msg: "{{vpc_info}} {{result}}"
+      - debug:
+          msg: "
+        {{vpc_info.cider_block}}
+        {{vpc_info.vpc_id}}
+        {{vpc_info.owner_id}}
+        {{result.name}}"
         
        
