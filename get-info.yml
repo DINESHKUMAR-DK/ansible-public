@@ -17,8 +17,7 @@
       ec2_ami_info:
         region: "{{REGION}}"
       register: ami_info
-      
     - debug:
-        msg: "{{ami_info}}"
+        msg: "{{vpc_info}} {{ami_info}}"
         
        
