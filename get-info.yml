@@ -32,5 +32,10 @@
         region: "{{REGION}}"
       register: ec2_instance_list
       
+    - name: Gather information about all Internet Gateways for an account or profile
+      ec2_vpc_igw_info:
+        region: "{{REGION}}"
+      register: igw_info
+      
     - debug:
-        msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}} {{elb_info}} {{ec2_instance_list}}"
+        msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}} {{elb_info}} {{ec2_instance_list}} ----------------- {{igw_info}}"
