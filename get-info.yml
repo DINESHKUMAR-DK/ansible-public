@@ -12,5 +12,5 @@
         region: "{{REGION}}"
       register: vpc_info
     - debug:
-        msg: vpc_info
+        msg: "{{vpc_info}}"
        
