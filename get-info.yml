@@ -1,11 +1,9 @@
 - hosts: localhost
   vars:
     # Global Vars
-    STATE: present
+    # -------only one Region at a time------------
+    
     REGION: ap-south-1
-
-    # General Vars
-
 
   tasks:
     - name: Get VPC details
