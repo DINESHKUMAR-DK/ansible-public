@@ -23,6 +23,8 @@
       register: cloud_front_info
       
     - debug:
-        msg: " {{vpc_info}} {{s3_buckets_info}} {{cloud_front_info}}"
+       - msg: " {{vpc_info}} {{s3_buckets_info}} "
+       - msg1: "{{cloud_front_info}}"
+        
         
        
