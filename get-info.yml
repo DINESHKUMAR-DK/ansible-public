@@ -13,11 +13,14 @@
         region: "{{REGION}}"
       register: vpc_info
       
-    - name: gather information about AMI 
-      ec2_ami_info:
-        region: "{{REGION}}"
-      register: ami_info
+    - name: Gather s3 bukets Info  
+      aws_s3_bucket_info:
+      register: result
+#     - name: gather information about AMI 
+#       ec2_ami_info:
+#         region: "{{REGION}}"
+#       register: ami_info
     - debug:
-        msg: "{{vpc_info}} {{ami_info}}"
+        msg: "{{vpc_info}} {{result}}"
         
        
