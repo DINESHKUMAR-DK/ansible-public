@@ -24,7 +24,7 @@
    
     - name: Gather information about all ELBs
       ec2_elb_info:
-        register: elb_info
+      register: elb_info
     - debug:
         msg: "{{ item.dns_name }}"
         loop: "{{ elb_info.elbs }}"
