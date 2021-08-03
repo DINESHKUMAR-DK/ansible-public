@@ -2,7 +2,7 @@
   vars:
     # Global Vars
     STATE: present
-    REGION: ["ap-south-1","us-east-1"]
+    REGION: ap-south-1
 
     # General Vars
 
