@@ -24,7 +24,7 @@
       
     - debug:
        - msg: " {{vpc_info}} {{s3_buckets_info}} "
-       - msg1: "{{cloud_front_info}}"
+       - msg: "{{cloud_front_info}}"
         
         
        
