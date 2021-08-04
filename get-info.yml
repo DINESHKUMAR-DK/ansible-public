@@ -16,7 +16,7 @@
       register: s3_buckets_info
       
     - debug:
-        msg: "{{vpc_info.vpc_id}}"
+        msg: "{{vpc_info.vpcs}}"
       
       
     - name: Gather Cloudfront info
