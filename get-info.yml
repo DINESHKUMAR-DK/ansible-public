@@ -2,7 +2,7 @@
   vars:
     # Global Vars
     # -------only one Region at a time------------
-    
+
     REGION: ap-south-1
     OUTPUT_FILE_NAME: info
 
@@ -11,89 +11,89 @@
       ec2_vpc_net_info:
         region: "{{REGION}}"
       register: vpc_info
-      
-    - name: Gather s3 bukets Info  
+
+    - name: Gather s3 buckets Info
       aws_s3_bucket_info:
       register: s3_buckets_info
-      
+
     - name: Gather Cloudfront info
       cloudfront_info:
         summary: true
       register: cloud_front_info
-   
+
     - name: Gather information about all ELBs
       ec2_elb_info:
         region: "{{REGION}}"
       register: elb_info
-      
+
     - name: Gather information about all instances
       ec2_instance_info:
         region: "{{REGION}}"
       register: ec2_instance_list
-      
+
     - name: Gather information about all Internet Gateways for an account or profile
       ec2_vpc_igw_info:
         region: "{{REGION}}"
       register: igw_info
-      
+
     - name: List all managed nat gateways
       ec2_vpc_nat_gateway_info:
         region: "{{REGION}}"
       register: nat_gatewy_list
-      
+
     - name: List all vpc peers
       ec2_vpc_peering_info:
         region: "{{REGION}}"
       register: list_all__vpc_peers
-      
+
     - name: Gather information about all vpn connections
       ec2_vpc_vpn_info:
         region: "{{REGION}}"
       register: vpn_cnn_list
-      
+
     - name: Find all existing efs
       efs_info:
         region: "{{REGION}}"
       register: efs_vol_list_info
-    
+
     - name: find all existing IAM roles
       iam_role_info:
       register: iam_role_list_info
-      
+
     - name: List all aws lambda function
       lambda_info:
         region: "{{REGION}}"
         query: all
       register: lambda_function_list
-      
+
     - name: Get all RDS instances
       rds_instance_info:
         region: "{{REGION}}"
       register: all_rds_instance_info
-      
+
     - name: List all hosted zones in route53
       route53_info:
         query: hosted_zone
       register: route53_hosted_zones_list
-      
+
     - name: obtain all ACM certificates
       aws_acm_info:
         region: "{{REGION}}"
       register: acm_certificate_list
-      
+
     - name: List all EIP addresses in the current region.
       ec2_eip_info:
         region: "{{REGION}}"
       register: regional_eip_addresses
-      
+
     - name: List of all ec2_volumes in region
       ec2_vol_info:
         region: "{{REGION}}"
       register: ec2_volumes_info
-      
-    - set_fact: value=" ------ VPC-INFO ----- \n {{vpc_info}} ------ S3-BUCKETS-INFO ----- {{s3_buckets_info}} ------ CLOUD-FRONT-INFO ----- {{cloud_front_info}} ------ ELB-INFO ----- {{elb_info}} ------ EC2-INSTANCES-INFO ----- {{ec2_instance_list}} ------ IGW-INFO ----- {{igw_info}} ------ NAT-GATEWAY-INFO -----{{nat_gatewy_list}} ------ VPC-PEERING-LIST-INFO -----{{list_all__vpc_peers}} -------VPN_CNN_LIST-INFO ----- {{vpn_cnn_list}} -------EFS-VOL-LIST-INFO ----- {{efs_vol_list_info}} -------IAM-ROLE-LIST-INFO ----- {{iam_role_list_info}} -------LAMBDA-FUNCTION-LIST-INFO -------- {{lambda_function_list}}  ------RDS-INSTANCES-LIST ----- {{all_rds_instance_info}}  ------ROUTE53-HOSTED-ZONE-LIST -----{{route53_hosted_zones_list}} ---------ACM-CERTIFICATE-LIST --------------{{acm_certificate_list}}  -----------ALL-ELASTIC-IP-ADD-----------------{{regional_eip_addresses}} ------EC2-VOLUME-INFO-------------{{ec2_volumes_info}}"
-    
-    - local_action: copy content={{ value }} dest=/home/output/{{OUTPUT_FILE_NAME}} 
-    
+
+    - set_fact: value=" ------ VPC-INFO ----- \n\n {{vpc_info}} ------ S3-BUCKETS-INFO ----- \n\n {{s3_buckets_info}} ------ CLOUD-FRONT-INFO -----\n\n {{cloud_front_info}} ------ ELB-INFO -----\n\n {{elb_info}} ------ EC2-INSTANCES-INFO ----- \n\n {{ec2_instance_list}} ------ IGW-INFO -----\n\n {{igw_info}} ------ NAT-GATEWAY-INFO ----- \n\n {{nat_gatewy_list}} ------ VPC-PEERING-LIST-INFO ----- \n\n {{list_all__vpc_peers}} -------VPN_CNN_LIST-INFO -----\n\n {{vpn_cnn_list}} -------EFS-VOL-LIST-INFO -----\n\n {{efs_vol_list_info}} -------IAM-ROLE-LIST-INFO -----\n\n {{iam_role_list_info}} -------LAMBDA-FUNCTION-LIST-INFO --------\n\n {{lambda_function_list}}  ------RDS-INSTANCES-LIST -----\n\n {{all_rds_instance_info}}  ------ROUTE53-HOSTED-ZONE-LIST -----\n\n {{route53_hosted_zones_list}} ---------ACM-CERTIFICATE-LIST -------------- \n\n {{acm_certificate_list}}  -----------ALL-ELASTIC-IP-ADD-----------------\n\n {{regional_eip_addresses}} ------EC2-VOLUME-INFO------------- \n\n {{ec2_volumes_info}}"
+
+    - local_action: copy content={{ value }} dest=/home/output/{{OUTPUT_FILE_NAME}}
+
     - debug:
-        msg: " ------ VPC-INFO ----- \n {{vpc_info}} ------ S3-BUCKETS-INFO ----- {{s3_buckets_info}} ------ CLOUD-FRONT-INFO ----- {{cloud_front_info}} ------ ELB-INFO ----- {{elb_info}} ------ EC2-INSTANCES-INFO ----- {{ec2_instance_list}} ------ IGW-INFO ----- {{igw_info}} ------ NAT-GATEWAY-INFO -----{{nat_gatewy_list}} ------ VPC-PEERING-LIST-INFO -----{{list_all__vpc_peers}} -------VPN_CNN_LIST-INFO ----- {{vpn_cnn_list}} -------EFS-VOL-LIST-INFO ----- {{efs_vol_list_info}} -------IAM-ROLE-LIST-INFO ----- {{iam_role_list_info}} -------LAMBDA-FUNCTION-LIST-INFO -------- {{lambda_function_list}}  ------RDS-INSTANCES-LIST ----- {{all_rds_instance_info}}  ------ROUTE53-HOSTED-ZONE-LIST -----{{route53_hosted_zones_list}} ---------ACM-CERTIFICATE-LIST --------------{{acm_certificate_list}}  -----------ALL-ELASTIC-IP-ADD-----------------{{regional_eip_addresses}} ------EC2-VOLUME-INFO-------------{{ec2_volumes_info}}"
+        msg: "{{value}}"
