@@ -13,7 +13,9 @@
       
     - name: Gather s3 bukets Info  
       aws_s3_bucket_info:
-      register: s3_buckets_info      
+      register: s3_buckets_info
+      
+    - local_action: copy content={{ vpc_info }} dest=/home/output/file
       
     - name: Gather Cloudfront info
       cloudfront_info:
