@@ -16,8 +16,8 @@
       register: s3_buckets_info
       
     - debug:
-        var=vpc_info.stdout_lines
-      loop: "{{ query('vpc_id', 'all') }}"
+        msg: "{{vpc_info}}"
+      
       
     - name: Gather Cloudfront info
       cloudfront_info:
