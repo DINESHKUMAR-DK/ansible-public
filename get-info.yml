@@ -26,7 +26,7 @@
    
     - name: Gather information about all ELBs
       ec2_elb_info:
-        region: "{{REGION}}"
+        region: "{{REGION-a}}"
       register: elb_info
       
     - name: Gather information about all instances
