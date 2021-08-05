@@ -92,12 +92,12 @@
       register: ec2_volumes_info
 
     - set_fact: vpc_info="{{vpc_info}}"
-    - set_fact: s3_bukets_info= "{{s3_buckets_info}}"
-    - set_fact: cloudfront_info= "{{cloud_front_info}} {{elb_info}} {{ec2_instance_list}} {{igw_info}} {{nat_gatewy_list}} {{list_all__vpc_peers}} {{vpn_cnn_list}} {{efs_vol_list_info}} {{iam_role_list_info}} {{lambda_function_list}} {{all_rds_instance_info}} {{route53_hosted_zones_list}} {{acm_certificate_list}} {{regional_eip_addresses}} {{ec2_volumes_info}}"
+    - set_fact: s3_bukets_infoo="{{s3_buckets_info}}"
+    - set_fact: cloudfront_infoo="{{cloud_front_info}} {{elb_info}} {{ec2_instance_list}} {{igw_info}} {{nat_gatewy_list}} {{list_all__vpc_peers}} {{vpn_cnn_list}} {{efs_vol_list_info}} {{iam_role_list_info}} {{lambda_function_list}} {{all_rds_instance_info}} {{route53_hosted_zones_list}} {{acm_certificate_list}} {{regional_eip_addresses}} {{ec2_volumes_info}}"
 
     - local_action: copy content={{ vpc_info }} dest=/home/output/test/vpc_info.json
-    - local_action: copy content={{ s3_bukets_info }} dest=/home/output/test/s3_bukets_info.json
-    - local_action: copy content={{ cloudfront_info }} dest=/home/output/test/all_info.json
+    - local_action: copy content={{ s3_bukets_infoo }} dest=/home/output/test/s3_bukets_info.json
+    - local_action: copy content={{ cloudfront_infoo }} dest=/home/output/test/all_info.json
 
     - debug:
-        msg: "{{cloudfront_info}}"
+        msg: "{{cloudfront_infoo}}"
