@@ -7,7 +7,10 @@
     OUTPUT_NEW_DIR_NAME: NEW
     PATH_OF_NEW_DIR: /home/output/test/
     
+    # ---------------CHANGES ARE NOT ALLOWD AFTER THIS LINE--------------//
+    
     # ------------------Logics-------------//
+    
     FULL_PATH: "{{PATH_OF_NEW_DIR}}{{OUTPUT_NEW_DIR_NAME}}"
 
   tasks:
