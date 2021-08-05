@@ -10,7 +10,7 @@
     # ---------------CHANGES ARE NOT ALLOWD AFTER THIS LINE--------------//
     
     # ------------------Logics-------------//
-    JSON_TO_CSV_CONVERTER_PATH: /home/output/test/converter/
+    JSON_TO_CSV_CONVERTER_SCRIPTS_PATH: /home/output/test/converter/json-csv.sh
     
     FULL_PATH: "{{PATH_OF_NEW_DIR}}{{OUTPUT_NEW_DIR_NAME}}"
 
@@ -151,4 +151,4 @@
         msg: " {{FULL_PATH}} {{cloudfront_infoo}}"
         
     - name: Triger Shell Scripts and start json converstion
-      shell: {{ JSON_TO_CSV_CONVERTER_PATH }}/json-csv.sh
+      shell: "{{ JSON_TO_CSV_CONVERTER_SCRIPTS_PATH }}"
