@@ -5,7 +5,7 @@
 
     REGION: ap-south-1
     OUTPUT_NEW_DIR_NAME: new
-    PATH_OF_NEW_DIR: /home/output/test/converter
+    PATH_OF_NEW_DIR: /home/output/test/converter/
     
     # ---------------CHANGES ARE NOT ALLOWD AFTER THIS LINE--------------//
     
