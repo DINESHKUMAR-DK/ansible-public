@@ -153,4 +153,5 @@
     - name: Triger Shell Scripts and start json converstion
       shell: json-csv.sh
       args:
+        executable: /bin/bash
         chdir: "{{PATH_OF_NEW_DIR}}"
