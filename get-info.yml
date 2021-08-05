@@ -132,7 +132,7 @@
     - local_action: copy content={{ rds_instances_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/rds_instances_infoo.json
     - local_action: copy content={{ route53_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/route53_infoo.json
     - local_action: copy content={{ acm_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/acm_infoo.json
-    - local_action: copy content={{ eip_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/eip_infoo.json
+    - local_action: copy content={{ eip_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/eip_infoo.json
     - local_action: copy content={{ ec2_vol_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/ec2_vol_infoo.json
 
     - debug:
