@@ -92,7 +92,8 @@
       ec2_vol_info:
         region: "{{REGION}}"
       register: ec2_volumes_info
-
+      
+    - name: mapping register into veriable
     - set_fact: vpc_infoo="{{vpc_info}}"
     - set_fact: s3_bukets_infoo="{{s3_buckets_info}}"
     - set_fact: cloudfront_infoo="{{cloud_front_info}}"
@@ -113,10 +114,11 @@
     
     - name: Creates directory
       file:
-      path: /home/output/test/{{OUTPUT_DIR_NAME}}
-      state: directory
+        path: /home/output/test/{{OUTPUT_DIR_NAME}}
+        state: directory
+        mode: '0777'
     
-
+    - name: Copy content into file in current machine
     - local_action: copy content={{ vpc_info }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/vpc_infoo.json
     - local_action: copy content={{ s3_bukets_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/s3_bukets_infoo.json
     - local_action: copy content={{ cloudfront_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/cloudfront_infoo.json
