@@ -1,5 +1,4 @@
 - hosts: localhost
-  become: yes
   vars:
     # Global Vars
     # -------only one Region at a time------------
