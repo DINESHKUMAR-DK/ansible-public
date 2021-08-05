@@ -113,7 +113,7 @@
     
     - name: Creates directory
       file:
-        path: /home/output/test/{{OUTPUT_DIR_NAME}}
+        path: /home/output/test/"{{OUTPUT_DIR_NAME}}"
         state: directory
         mode: '0777'
     
