@@ -6,6 +6,8 @@
     REGION: ap-south-1
     OUTPUT_NEW_DIR_NAME: NEW
     PATH_OF_NEW_DIR: /home/output/test/
+    
+    # ------------------Logics-------------//
     FULL_PATH: "{{PATH_OF_NEW_DIR}}{{OUTPUT_NEW_DIR_NAME}}"
 
   tasks:
@@ -117,23 +119,23 @@
         state: directory
         mode: '0777'
     
-    - local_action: copy content={{ vpc_info }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/vpc_infoo.json
-    - local_action: copy content={{ s3_bukets_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/s3_bukets_infoo.json
-    - local_action: copy content={{ cloudfront_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/cloudfront_infoo.json
-    - local_action: copy content={{ elb_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/elb_infoo.json
-    - local_action: copy content={{ ec2_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/ec2_infoo.json
-    - local_action: copy content={{ igw_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/igw_infoo.json
-    - local_action: copy content={{ nat_gw_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/nat_gw_infoo.json
-    - local_action: copy content={{ vpc_peering_infoo  }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/vpc_peering_infoo.json
-    - local_action: copy content={{ vpn_cnn_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/vpn_cnn_infoo.json
-    - local_action: copy content={{ efs_vol_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/efs_vol_infoo.json
-    - local_action: copy content={{ iam_role_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/iam_role_infoo.json
-    - local_action: copy content={{ lambda_fun_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/lambda_fun_infoo.json
-    - local_action: copy content={{ rds_instances_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/rds_instances_infoo.json
-    - local_action: copy content={{ route53_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/route53_infoo.json
-    - local_action: copy content={{ acm_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/acm_infoo.json
-    - local_action: copy content={{ eip_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/eip_infoo.json
-    - local_action: copy content={{ ec2_vol_infoo }} dest=/home/output/test/{{OUTPUT_NEW_DIR_NAME}}/ec2_vol_infoo.json
+    - local_action: copy content={{ vpc_info }} dest={{FULL_PATH}}/vpc_infoo.json
+    - local_action: copy content={{ s3_bukets_infoo }} dest={{FULL_PATH}}/s3_bukets_infoo.json
+    - local_action: copy content={{ cloudfront_infoo }} dest={{FULL_PATH}}/cloudfront_infoo.json
+    - local_action: copy content={{ elb_infoo }} dest={{FULL_PATH}}/elb_infoo.json
+    - local_action: copy content={{ ec2_infoo }} dest={{FULL_PATH}}/ec2_infoo.json
+    - local_action: copy content={{ igw_infoo }} dest={{FULL_PATH}}/igw_infoo.json
+    - local_action: copy content={{ nat_gw_infoo }} dest={{FULL_PATH}}/nat_gw_infoo.json
+    - local_action: copy content={{ vpc_peering_infoo  }} dest={{FULL_PATH}}/vpc_peering_infoo.json
+    - local_action: copy content={{ vpn_cnn_infoo }} dest={{FULL_PATH}}/vpn_cnn_infoo.json
+    - local_action: copy content={{ efs_vol_infoo }} dest={{FULL_PATH}}/efs_vol_infoo.json
+    - local_action: copy content={{ iam_role_infoo }} dest={{FULL_PATH}}/iam_role_infoo.json
+    - local_action: copy content={{ lambda_fun_infoo }} dest={{FULL_PATH}}/lambda_fun_infoo.json
+    - local_action: copy content={{ rds_instances_infoo }} dest={{FULL_PATH}}/rds_instances_infoo.json
+    - local_action: copy content={{ route53_infoo }} dest={{FULL_PATH}}/route53_infoo.json
+    - local_action: copy content={{ acm_infoo }} dest={{FULL_PATH}}/acm_infoo.json
+    - local_action: copy content={{ eip_infoo }} dest={{FULL_PATH}}/eip_infoo.json
+    - local_action: copy content={{ ec2_vol_infoo }} dest={{FULL_PATH}}/ec2_vol_infoo.json
 
     - debug:
         msg: " {{FULL_PATH}} {{cloudfront_infoo}}"
