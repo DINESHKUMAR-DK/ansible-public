@@ -4,7 +4,9 @@
     # -------only one Region at a time------------
 
     REGION: ap-south-1
-    OUTPUT_FILE_NAME: info
+    OUTPUT_NEW_DIR_NAME: NEW
+    PATH_OF_NEW_DIR: /home/output/test/
+    FULL_PATH: "{{PATH_OF_NEW_DIR}}{{OUTPUT_NEW_DIR_NAME}}"
 
   tasks:
     - name: Get VPC details
@@ -91,13 +93,47 @@
         region: "{{REGION}}"
       register: ec2_volumes_info
 
-    - set_fact: vpc_info="{{vpc_info}}"
+    - set_fact: vpc_infoo="{{vpc_info}}"
     - set_fact: s3_bukets_infoo="{{s3_buckets_info}}"
-    - set_fact: cloudfront_infoo="{{cloud_front_info}} {{elb_info}} {{ec2_instance_list}} {{igw_info}} {{nat_gatewy_list}} {{list_all__vpc_peers}} {{vpn_cnn_list}} {{efs_vol_list_info}} {{iam_role_list_info}} {{lambda_function_list}} {{all_rds_instance_info}} {{route53_hosted_zones_list}} {{acm_certificate_list}} {{regional_eip_addresses}} {{ec2_volumes_info}}"
+    - set_fact: cloudfront_infoo="{{cloud_front_info}}"
+    - set_fact: elb_infoo="{{elb_info}}"
+    - set_fact: ec2_infoo="{{ec2_instance_list}}"
+    - set_fact: igw_infoo="{{igw_info}}"
+    - set_fact: nat_gw_infoo="{{nat_gatewy_list}}"
+    - set_fact: vpc_peering_infoo="{{list_all__vpc_peers}}"
+    - set_fact: vpn_cnn_infoo="{{vpn_cnn_list}}"
+    - set_fact: efs_vol_infoo="{{efs_vol_list_info}}"
+    - set_fact: iam_role_infoo="{{iam_role_list_info}}"
+    - set_fact: lambda_fun_infoo="{{lambda_function_list}}"
+    - set_fact: rds_instances_infoo="{{all_rds_instance_info}}"
+    - set_fact: route53_infoo="{{route53_hosted_zones_list}}"
+    - set_fact: acm_infoo="{{acm_certificate_list}}"
+    - set_fact: eip_infoo="{{regional_eip_addresses}}"
+    - set_fact: ec2_vol_infoo="{{ec2_volumes_info}}"
+    
+    - name: Creates directory
+      file:
+      path: /home/output/test/{{OUTPUT_DIR_NAME}}
+      state: directory
+    
 
-    - local_action: copy content={{ vpc_info }} dest=/home/output/test/vpc_info.json
-    - local_action: copy content={{ s3_bukets_infoo }} dest=/home/output/test/s3_bukets_info.json
-    - local_action: copy content={{ cloudfront_infoo }} dest=/home/output/test/all_info.json
+    - local_action: copy content={{ vpc_info }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/vpc_infoo.json
+    - local_action: copy content={{ s3_bukets_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/s3_bukets_infoo.json
+    - local_action: copy content={{ cloudfront_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/cloudfront_infoo.json
+    - local_action: copy content={{ elb_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/elb_infoo.json
+    - local_action: copy content={{ ec2_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/ec2_infoo.json
+    - local_action: copy content={{ igw_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/igw_infoo.json
+    - local_action: copy content={{ nat_gw_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/nat_gw_infoo.json
+    - local_action: copy content={{ vpc_peering_infoo  }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/vpc_peering_infoo.json
+    - local_action: copy content={{ vpn_cnn_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/vpn_cnn_infoo.json
+    - local_action: copy content={{ efs_vol_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/efs_vol_infoo.json
+    - local_action: copy content={{ iam_role_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/iam_role_infoo.json
+    - local_action: copy content={{ lambda_fun_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/lambda_fun_infoo.json
+    - local_action: copy content={{ rds_instances_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/rds_instances_infoo.json
+    - local_action: copy content={{ route53_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/route53_infoo.json
+    - local_action: copy content={{ acm_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/acm_infoo.json
+    - local_action: copy content={{ eip_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/eip_infoo.json
+    - local_action: copy content={{ ec2_vol_infoo }} dest=/home/output/test/{{OUTPUT_DIR_NAME}}/ec2_vol_infoo.json
 
     - debug:
-        msg: "{{cloudfront_infoo}}"
+        msg: " {{FULL_PATH}} {{cloudfront_infoo}}"
