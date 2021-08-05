@@ -4,12 +4,13 @@
     # -------only one Region at a time------------
 
     REGION: ap-south-1
-    OUTPUT_NEW_DIR_NAME: NEW
-    PATH_OF_NEW_DIR: /home/output/test/
+    OUTPUT_NEW_DIR_NAME: new
+    PATH_OF_NEW_DIR: /home/output/test/converter
     
     # ---------------CHANGES ARE NOT ALLOWD AFTER THIS LINE--------------//
     
     # ------------------Logics-------------//
+    JSON_TO_CSV_CONVERTER_PATH: /home/output/test/converter
     
     FULL_PATH: "{{PATH_OF_NEW_DIR}}{{OUTPUT_NEW_DIR_NAME}}"
 
@@ -116,9 +117,15 @@
     - set_fact: eip_infoo="{{regional_eip_addresses}}"
     - set_fact: ec2_vol_infoo="{{ec2_volumes_info}}"
     
+    - name: Delete directory
+      file:
+        path: /home/output/test/converter/{{OUTPUT_NEW_DIR_NAME}}
+        state: absent
+        mode: '0777'
+    
     - name: Creates directory
       file:
-        path: /home/output/test/{{OUTPUT_NEW_DIR_NAME}}
+        path: /home/output/test/converter/{{OUTPUT_NEW_DIR_NAME}}
         state: directory
         mode: '0777'
     
@@ -142,3 +149,8 @@
 
     - debug:
         msg: " {{FULL_PATH}} {{cloudfront_infoo}}"
+        
+    - name: Triger Shell Scripts and start json converstion
+      shell: json-csv.sh
+      args:
+        chdir: {{PATH_OF_NEW_DIR}}
