@@ -152,3 +152,5 @@
         
     - name: Triger Shell Scripts and start json converstion
       shell: "{{ JSON_TO_CSV_CONVERTER_SCRIPTS_PATH }}"
+      args:
+        chdir: "{{PATH_OF_NEW_DIR}}"
