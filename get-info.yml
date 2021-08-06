@@ -163,7 +163,7 @@
         format: zip
         
     - name: Triger Shell Scripts and start cleaning folders
-      shell: "{{ PATH_OF_NEW_DIR }}cleardir.sh"
+      shell: "{{ PATH_OF_NEW_DIR }}cleandir.sh"
       args:
         chdir: "{{PATH_OF_NEW_DIR}}"
        
