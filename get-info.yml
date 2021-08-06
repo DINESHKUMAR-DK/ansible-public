@@ -4,13 +4,14 @@
     # -------only one Region at a time------------
 
     REGION: ap-south-1
-    OUTPUT_NEW_DIR_NAME: new
-    PATH_OF_NEW_DIR: /home/output/test/converter/
+
     NAME_OF_OUTPUT_ZIP: demo.zip
     
     # ---------------CHANGES ARE NOT ALLOWD AFTER THIS LINE--------------//
     
     # ------------------Logics-------------//
+    OUTPUT_NEW_DIR_NAME: new
+    PATH_OF_NEW_DIR: /home/output/test/converter/
     JSON_TO_CSV_CONVERTER_SCRIPTS_PATH: /home/output/test/converter/json-csv.sh
     
     FULL_PATH: "{{PATH_OF_NEW_DIR}}{{OUTPUT_NEW_DIR_NAME}}"
