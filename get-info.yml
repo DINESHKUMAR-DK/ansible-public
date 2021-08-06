@@ -157,6 +157,6 @@
       
     - name: Create a zip archive of /path/to/foo
       archive:
-      path: "{{PATH_OF_NEW_DIR}}/csv"
-      dest: "{{PATH_OF_NEW_DIR}}"
-      format: zip
+        path: "{{PATH_OF_NEW_DIR}}/csv"
+        dest: "{{PATH_OF_NEW_DIR}}"
+        format: zip
