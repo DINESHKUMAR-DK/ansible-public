@@ -154,3 +154,9 @@
       shell: "{{ JSON_TO_CSV_CONVERTER_SCRIPTS_PATH }}"
       args:
         chdir: "{{PATH_OF_NEW_DIR}}"
+      
+    - name: Create a zip archive of /path/to/foo
+      archive:
+      path: "{{PATH_OF_NEW_DIR}}/csv"
+      dest: "{{PATH_OF_NEW_DIR}}"
+      format: zip
