@@ -8,8 +8,8 @@
   tasks:
     - name: Send e-mail to a bunch of users, attaching files
       mail:
-        host: 127.0.0.1
-        port: 2025
+        host: smtp.gmail.com
+        port: 587
         username: dineshk@crimsoncloud.in
         password: "{{email_password}}"
         subject: Aws {{REGION}} resource csv
