@@ -1,0 +1,23 @@
+- hosts: localhost
+  vars:
+    # Global Vars
+    # -------only one Region at a time------------
+
+    REGION: ap-south-1
+
+  tasks:
+    - name: Send e-mail to a bunch of users, attaching files
+      mail:
+        host: 127.0.0.1
+        port: 2025
+        subject: Aws {{REGION}} resource csv
+        body: Hello, This mail is generated from ansible server with information of resources.
+        from: dineshk@crimsoncloud.in (dinesh k)
+        to:
+        - Dinesh K <dineshk@crimsoncloud.in>
+        - Dinesh  <jeetdinesh8282@gmail.com>
+        cc: Dinesh <dineshkumar8282@gmail.com>
+        attach:
+        - /home/output/test/converter/demo.zip
+        charset: us-ascii
+        secure: try
