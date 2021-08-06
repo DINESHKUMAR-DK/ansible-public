@@ -10,6 +10,7 @@
       mail:
         host: 127.0.0.1
         port: 2025
+        password: "{{email_password}}"
         subject: Aws {{REGION}} resource csv
         body: Hello, This mail is generated from ansible server with information of resources.
         from: dineshk@crimsoncloud.in (dinesh k)
