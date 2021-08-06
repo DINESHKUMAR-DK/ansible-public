@@ -161,6 +161,7 @@
         path: "{{PATH_OF_NEW_DIR}}csv"
         dest: "{{PATH_OF_NEW_DIR}}{{NAME_OF_OUTPUT_ZIP}}"
         format: zip
+        mode: '0777'
         
     - name: Triger Shell Scripts and start cleaning folders
       shell: "{{ PATH_OF_NEW_DIR }}cleandir.sh"
