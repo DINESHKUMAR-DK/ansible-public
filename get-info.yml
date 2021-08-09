@@ -5,7 +5,7 @@
 
     REGION: ap-south-1
 
-    NAME_OF_OUTPUT_ZIP: demo.zip
+    NAME_OF_OUTPUT_ZIP: test.zip
     
     # ---------------CHANGES ARE NOT ALLOWD AFTER THIS LINE--------------//
     
@@ -161,7 +161,7 @@
     - name: Create a zip archive of {{NAME_OF_OUTPUT_ZIP}}
       archive:
         path: "{{PATH_OF_NEW_DIR}}csv"
-        dest: "{{PATH_OF_NEW_DIR}}{{NAME_OF_OUTPUT_ZIP}}"
+        dest: "{{PATH_OF_ZIP_FILE_WITH_NAME}}"
         format: zip
         mode: '0777'
         
