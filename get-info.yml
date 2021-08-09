@@ -11,12 +11,12 @@
     # ---------------CHANGES ARE NOT ALLOWD AFTER THIS LINE--------------//
     
     # ------------------Logics-------------//
-    OUTPUT_NEW_DIR_NAME: new
+   # OUTPUT_NEW_DIR_NAME: new
     PATH_OF_NEW_DIR: "{{BASE_DIR_NAME}}"
     JSON_TO_CSV_CONVERTER_SCRIPTS_PATH: "{{BASE_DIR_NAME}}json-csv.sh"
     PATH_OF_ZIP_FILE_WITH_NAME: "{{BASE_DIR_NAME}}{{NAME_OF_OUTPUT_ZIP}}"
     
-    FULL_PATH: "{{BASE_DIR_NAME}}{{OUTPUT_NEW_DIR_NAME}}"
+    FULL_PATH: "{{BASE_DIR_NAME}}/new"
 
   tasks:
     - name: Get VPC details
@@ -123,13 +123,13 @@
     
     - name: Delete directory
       file:
-        path: /home/output/test/converter/{{OUTPUT_NEW_DIR_NAME}}
+        path: "{{FULL_PATH}}"
         state: absent
         mode: '0777'
     
     - name: Creates directory
       file:
-        path: /home/output/test/converter/{{OUTPUT_NEW_DIR_NAME}}
+        path: "{{FULL_PATH}}"
         state: directory
         mode: '0777'
     
@@ -157,19 +157,14 @@
     - name: Triger Shell Scripts and start json converstion
       shell: "{{ JSON_TO_CSV_CONVERTER_SCRIPTS_PATH }}"
       args:
-        chdir: "{{PATH_OF_NEW_DIR}}"
+        chdir: "{{BASE_DIR_NAME}}"
       
     - name: Create a zip archive of {{NAME_OF_OUTPUT_ZIP}}
       archive:
-        path: "{{PATH_OF_NEW_DIR}}csv"
+        path: "{{BASE_DIR_NAME}}csv"
         dest: "{{PATH_OF_ZIP_FILE_WITH_NAME}}"
         format: zip
         mode: '0777'
-        
-    - name: Triger Shell Scripts and start cleaning folders
-      shell: "{{ PATH_OF_NEW_DIR }}cleandir.sh"
-      args:
-        chdir: "{{PATH_OF_NEW_DIR}}"
 
     - name: Send e-mail to a bunch of users, attaching files
       mail:
@@ -189,4 +184,9 @@
         - "{{PATH_OF_ZIP_FILE_WITH_NAME}}"
         charset: us-ascii
         secure: starttls
+        
+    - name: Triger Shell Scripts and start cleaning folders
+      shell: "{{ BASE_DIR_NAME }}cleandir.sh"
+      args:
+        chdir: "{{BASE_DIR_NAME}}"
        
