@@ -22,4 +22,4 @@
         attach:
         - /home/output/test/converter/demo.zip
         charset: us-ascii
-        secure: try
+        secure: starttls
