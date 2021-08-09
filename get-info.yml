@@ -8,9 +8,12 @@
     # NAME_OF_OUTPUT_ZIP- A uniqe Name of email attachement zipfile with .zip extension like(name<datetime>.zip or name26-1254.zip)
     
     NAME_OF_OUTPUT_ZIP: test.zip                # Required
+    
+    # Email information
+ 
     EMAIL_ADD_LIST_FOR_RECIVERS: 
       - jeetdinesh8282@gmail.com
-      
+    # - dineshkumar8282@gmail.com
     CC_EMAIL_ADD_LIST:
       - dineshk@crimsoncloud.in
       
