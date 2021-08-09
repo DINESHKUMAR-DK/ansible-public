@@ -8,9 +8,14 @@
     # NAME_OF_OUTPUT_ZIP- A uniqe Name of email attachement zipfile with .zip extension like(name<datetime>.zip or name26-1254.zip)
     
     NAME_OF_OUTPUT_ZIP: test.zip                # Required
-    EMAIL_OF_RECIVERS: 
+    EMAIL_ADD_LIST_FOR_RECIVERS: 
       - jeetdinesh8282@gmail.com
+      
+    CC_EMAIL_ADD_LIST:
       - dineshk@crimsoncloud.in
+      
+    EMAIL_BODY_MSG: Hello, This mail is generated from ansible server with information and attachements of resources.
+    EMAIL_SUBJEACT: Aws {{REGION}} resource csv
     
     
     
@@ -179,14 +184,14 @@
         port: 587
         username: dineshk@crimsoncloud.in
         password: "{{email_password}}"
-        subject: Aws {{REGION}} resource csv
-        body: Hello, This mail is generated from ansible server with information and attachements of resources.
+        subject: "{{EMAIL_SUBJEACT}}"
+        body: "{{EMAIL_BODY_MSG}}"
         from: dineshk@crimsoncloud.in (dinesh k)
-        to: "{{EMAIL_OF_RECIVERS[]}}"
+        to: "{{EMAIL_ADD_LIST_FOR_RECIVERS}}"
         #- Dinesh K <dineshk@crimsoncloud.in>
         #- Dinesh  <jeetdinesh8282@gmail.com>
         #- chinna <chinna@crimsoncloud.in>
-        cc: Dinesh <dineshkumar8282@gmail.com>
+        cc: "{{CC_EMAIL_ADD_LIST}}"
         attach:
         - "{{PATH_OF_ZIP_FILE_WITH_NAME}}"
         charset: us-ascii
