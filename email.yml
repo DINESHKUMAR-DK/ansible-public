@@ -8,7 +8,7 @@
   tasks:
     - name: Send e-mail to a bunch of users, attaching files
       mail:
-        host: smtp.gmail.com
+        host: smtp-mail.outlook.com
         port: 587
         username: dineshk@crimsoncloud.in
         password: "{{email_password}}"
