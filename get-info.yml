@@ -3,15 +3,19 @@
     # Global Vars
     # -------only one Region at a time------------
 
-    REGION: ap-south-1
-    # A uniqe Name of attachement zipfile with .zip extension like(name<datetime>.zip or name26-1254.zip)
-    NAME_OF_OUTPUT_ZIP: test.zip
-    BASE_DIR_NAME: /home/output/test/converter/
+    REGION: ap-south-1                          # Required
+    
+    # NAME_OF_OUTPUT_ZIP- A uniqe Name of email attachement zipfile with .zip extension like(name<datetime>.zip or name26-1254.zip)
+    
+    NAME_OF_OUTPUT_ZIP: test.zip                # Required
+    
+    
     
     # ---------------CHANGES ARE NOT ALLOWD AFTER THIS LINE--------------//
     
     # ------------------Logics-------------//
-   # OUTPUT_NEW_DIR_NAME: new
+   
+    BASE_DIR_NAME: /home/output/test/converter/
     PATH_OF_NEW_DIR: "{{BASE_DIR_NAME}}"
     JSON_TO_CSV_CONVERTER_SCRIPTS_PATH: "{{BASE_DIR_NAME}}json-csv.sh"
     PATH_OF_ZIP_FILE_WITH_NAME: "{{BASE_DIR_NAME}}{{NAME_OF_OUTPUT_ZIP}}"
