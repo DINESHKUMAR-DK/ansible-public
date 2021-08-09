@@ -13,7 +13,7 @@
         username: dineshk@crimsoncloud.in
         password: "{{email_password}}"
         subject: Aws {{REGION}} resource csv
-        body: Hello, This mail is generated from ansible server with information of resources.
+        body: Hello, This mail is generated from ansible server with information and attachements of resources.
         from: dineshk@crimsoncloud.in (dinesh k)
         to:
         - Dinesh K <dineshk@crimsoncloud.in>
