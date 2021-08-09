@@ -13,6 +13,7 @@
     OUTPUT_NEW_DIR_NAME: new
     PATH_OF_NEW_DIR: /home/output/test/converter/
     JSON_TO_CSV_CONVERTER_SCRIPTS_PATH: /home/output/test/converter/json-csv.sh
+    PATH_OF_ZIP_FILE_WITH_NAME: "{{PATH_OF_NEW_DIR}}{{NAME_OF_OUTPUT_ZIP}}"
     
     FULL_PATH: "{{PATH_OF_NEW_DIR}}{{OUTPUT_NEW_DIR_NAME}}"
 
@@ -168,4 +169,22 @@
       shell: "{{ PATH_OF_NEW_DIR }}cleandir.sh"
       args:
         chdir: "{{PATH_OF_NEW_DIR}}"
+
+    - name: Send e-mail to a bunch of users, attaching files
+      mail:
+        host: smtp-mail.outlook.com
+        port: 587
+        username: dineshk@crimsoncloud.in
+        password: "{{email_password}}"
+        subject: Aws {{REGION}} resource csv
+        body: Hello, This mail is generated from ansible server with information and attachements of resources.
+        from: dineshk@crimsoncloud.in (dinesh k)
+        to:
+        - Dinesh K <dineshk@crimsoncloud.in>
+        - Dinesh  <jeetdinesh8282@gmail.com>
+        cc: Dinesh <dineshkumar8282@gmail.com>
+        attach:
+        - "{{PATH_OF_ZIP_FILE_WITH_NAME}}"
+        charset: us-ascii
+        secure: starttls
        
