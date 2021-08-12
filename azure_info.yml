@@ -14,9 +14,9 @@
      azure_rm_manageddisk_info:
      register: all_managed_disk_info
 
-   - name: Get facts for all zones
-     azure_rm_privatednszone_info:
-     register: all_zone_info
+   #- name: Get facts for all zones
+   #  azure_rm_privatednszone_info:
+   #  register: all_zone_info
 
    - name: Get facts for all resource groups
      azure_rm_resourcegroup_info:
