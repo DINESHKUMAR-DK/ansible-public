@@ -1,0 +1,83 @@
+- hosts: localhost
+  # Parameter for creating app-service
+  vars:
+    # Global Vars
+    STATE: present
+    REGION: EAST US
+
+  tasks:
+   - name: Get facts for all load balancers
+     azure_rm_loadbalancer_info:
+     register: loadbal_info
+
+   - name: Get facts for all managed disks
+     azure_rm_manageddisk_info:
+     register: all_managed_disk_info
+
+   - name: Get facts for all zones
+     azure_rm_privatednszone_info:
+     register: all_zone_info
+
+   - name: Get facts for all resource groups
+     azure_rm_resourcegroup_info:
+     register: all_resource_grp_info
+
+   - name: Get facts for all subscriptions, including ones that are disabled.
+     azure_rm_subscription_info:
+       all: True
+     register: all_subs_info
+
+   - name: Get facts for all virtual machines
+     azure_rm_virtualmachine_info:
+     register: all_vm_info
+
+   - name: Get facts for all virtual networks
+     azure_rm_virtualnetwork_info:
+     register: all_vn_info
+
+   - name: Get Vpn Site List By Subscription
+     azure_rm_vpnsite_info:
+     register: all_vpn_site_info
+
+   - name: Get facts for web apps
+     azure_rm_webapp_info:
+     register: webapps_info
+
+   - name: Get facts for all Azure Kubernetes Services
+     azure_rm_aks_info:
+     register: all_k8s_info
+
+   - name: Get azure_rm_appserviceplan_facts for app service plan.
+     azure_rm_appserviceplan_info:
+     register: app_splan_info
+
+   - name: List all Azure Firewalls for a given subscription
+     azure_rm_azurefirewall_info:
+     register: all_firewall_info
+
+   - name: Get facts for all Type A Record Sets in a Zone
+     azure_rm_dnsrecordset_info:
+     register: a_record_zone_info
+
+   - name: Get facts for all zones
+     azure_rm_dnszone_info:
+     register: all_zone_info
+
+   - name: Get facts for all Function Apps
+     azure_rm_functionapp_info:
+     register: all_fun_apps_info
+
+   - name: List all available images under current subscription
+     azure_rm_image_info:
+     register: all_img_in_subs_info
+
+   - name: Get facts for all IP groups
+     azure_rm_ipgroup_info:
+     register: all_ip_grp_info
+
+   - name: List Key Vaults in current subscription
+     azure_rm_keyvault_info:
+     register: key_vaults_in_subs_info
+   
+   - debug:
+       msg: "{{loadbal_info}} ------{{all_managed_disk_info}}-----{{all_zone_info}}---{{all_resource_grp_info}}-------{{all_subs_info}}--------{{all_vm_info}}"
