@@ -18,9 +18,9 @@
    #  azure_rm_privatednszone_info:
    #  register: all_zone_info
 
-   - name: Get facts for all resource groups
-     azure_rm_resourcegroup_info:
-     register: all_resource_grp_info
+   #- name: Get facts for all resource groups
+   #  azure_rm_resourcegroup_info:
+   #  register: all_resource_grp_info
 
    - name: Get facts for all subscriptions, including ones that are disabled.
      azure_rm_subscription_info:
