@@ -91,7 +91,7 @@
      register: private-subnet-2_result
 
    - name: Create new nat gateway and allocate new EIP.
-     community.aws.ec2_vpc_nat_gateway:
+     ec2_vpc_nat_gateway:
        state: "{{STATE}}"
        subnet_id: "{{public-subnet-2_result.subnet-id}}"
        wait: true
