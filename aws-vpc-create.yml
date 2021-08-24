@@ -1,0 +1,130 @@
+- hosts: all
+  # Parameter for creating vpc
+  vars:
+    # Global Vars
+    STATE: present
+    REGION: ap-south-1
+    # VPC
+    VPC_NAME:  Demo-vpc
+    VPC_CIDR_BLOCK: 10.10.0.0/16
+
+    # IGW
+    INTERNET_GATEWAY_NAME: igw-demo
+
+    # Subnet details
+    PUBLIC_SUBNETS_NAME: Public-subnet
+    PUBLIC_SUBNETS-1_CIDR: 10.10.0.0/24
+    PUBLIC_SUBNETS-2_CIDR: 10.10.1.0/24
+
+    PRIVATE_SUBNETS_NAME: Private-subnet
+    PRIVATE_SUBNETS-1_CIDR: 10.10.2.0/24
+    PRIVATE_SUBNETS-2_CIDR: 10.10.3.0/24
+
+# DO NOT CHANGE ANY LINE AFTER THIS !!!
+
+
+  tasks:
+   - name: Create a VPC with tags
+     ec2_vpc_net:
+       name: "{{VPC_NAME}}"
+       cidr_block: "{{VPC_CIDR_BLOCK}}"
+       region: "{{REGION}}"
+       tags:
+         Name: Ansible-automation
+     register: vpc_net_result
+
+   - name: Create Internet Gateway using ansible playbook
+     ec2_vpc_igw:
+       vpc_id: "{{ vpc_net_result.vpc.id }}"
+       region: "{{REGION}}"
+       tags:
+          Name: "{{INTERNET_GATEWAY_NAME}}"
+       state: "{{STATE}}"
+     register: igw_result
+
+   - name: create public-subnet-1 in a VPC.
+     ec2_vpc_subnet:
+       region: "{{REGION}}"
+       state: "{{STATE}}"
+       vpc_id: "{{ vpc_net_result.vpc.id }}"
+       cidr: "{{PUBLIC_SUBNETS-1_CIDR}}"
+       tags:
+         Name: "{{PUBLIC_SUBNETS_NAME}}-1"
+       az: ap-south-1a
+       wait: yes
+     register: public-subnet-1_result
+
+   - name: Create Public-subnet-2 in a VPC.
+     ec2_vpc_subnet:
+       region: "{{REGION}}"
+       state: "{{STATE}}"
+       vpc_id: "{{ vpc_net_result.vpc.id }}"
+       cidr: "{{PUBLIC_SUBNETS-2_CIDR}}"
+       tags:
+         Name: "{{PUBLIC_SUBNETS_NAME}}-2"
+       az: ap-south-1b
+       wait: yes
+     register: public-subnet-2_result
+
+   - name: Create Private-subnet-1 in a VPC.
+     ec2_vpc_subnet:
+       region: "{{REGION}}"
+       state: "{{STATE}}"
+       vpc_id: "{{ vpc_net_result.vpc.id }}"
+       cidr: "{{PRIVATE_SUBNETS-1_CIDR}}"
+       tags:
+         Name: "{{PRIVATE_SUBNETS_NAME}}-1"
+       az: ap-south-1a
+       wait: yes
+     register: private-subnet-1_result
+
+   - name: Create Private-subnet-2 in a VPC.
+     ec2_vpc_subnet:
+       region: "{{REGION}}"
+       state: "{{STATE}}"
+       vpc_id: "{{ vpc_net_result.vpc.id }}"
+       cidr: "{{PRIVATE_SUBNETS-2_CIDR}}"
+       tags:
+         Name: "{{PRIVATE_SUBNETS_NAME}}-2"
+       az: ap-south-1b
+       wait: yes
+     register: private-subnet-2_result
+
+   - name: Create new nat gateway and allocate new EIP.
+     community.aws.ec2_vpc_nat_gateway:
+       state: "{{STATE}}"
+       subnet_id: "{{public-subnet-2_result.subnet-id}}"
+       wait: true
+       region: "{{REGION}}"
+     register: nat-gateway_result
+
+   - name: Set up public subnets route table
+     ec2_vpc_route_table:
+       vpc_id: "{{ vpc_net_result.vpc.id }}"
+       region: "{{REGION}}"
+       tags:
+         Name: Public
+       subnets:
+        - "{{public-subnet-1_result.subnet-id}}"
+        - "{{public-subnet-2_result.subnet-id}}"
+       routes:
+        - dest: 0.0.0.0/0
+          gateway_id: "{{ igw_result.gateway_id }}"
+     register: public_route_table
+
+   - name: Set up private subnets route table
+     ec2_vpc_route_table:
+       vpc_id: "{{ vpc_net_result.vpc.id }}"
+       region: "{{REGION}}"
+       tags:
+         Name: Private
+       subnets:
+        - "{{private-subnet-1_result.subnet-id}}"
+        - "{{private-subnet-2_result.subnet-id}}"
+       routes:
+        - dest: 0.0.0.0/0
+          gateway_id: "{{ nat-gateway_result.nat_gateway_id }}"
+     register: Private_route_table
+
+   - debug:
+       var: vpc_net_result
