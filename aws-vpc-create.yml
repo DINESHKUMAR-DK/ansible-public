@@ -2,7 +2,7 @@
   # Parameter for creating vpc
   vars:
     # Global Vars
-    STATE: absent
+    STATE: persent
     REGION: ap-south-1
     # VPC
     VPC_NAME:  Demo-vpc
