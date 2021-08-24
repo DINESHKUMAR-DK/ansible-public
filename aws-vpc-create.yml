@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: localhost
   # Parameter for creating vpc
   vars:
     # Global Vars
