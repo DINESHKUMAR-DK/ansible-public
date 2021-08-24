@@ -52,7 +52,7 @@
          Name: "{{PUBLIC_SUBNETS_NAME}}-1"
        az: ap-south-1a
        wait: yes
-     register: public-subnet-1_result
+     register: public_subnet_1_result
 
    - name: Create Public-subnet-2 in a VPC.
      ec2_vpc_subnet:
@@ -64,7 +64,7 @@
          Name: "{{PUBLIC_SUBNETS_NAME}}-2"
        az: ap-south-1b
        wait: yes
-     register: public-subnet-2_result
+     register: public_subnet_2_result
 
    - name: Create Private-subnet-1 in a VPC.
      ec2_vpc_subnet:
@@ -76,7 +76,7 @@
          Name: "{{PRIVATE_SUBNETS_NAME}}-1"
        az: ap-south-1a
        wait: yes
-     register: private-subnet-1_result
+     register: private_subnet_1_result
 
    - name: Create Private-subnet-2 in a VPC.
      ec2_vpc_subnet:
@@ -88,15 +88,15 @@
          Name: "{{PRIVATE_SUBNETS_NAME}}-2"
        az: ap-south-1b
        wait: yes
-     register: private-subnet-2_result
+     register: private_subnet_2_result
 
    - name: Create new nat gateway and allocate new EIP.
      ec2_vpc_nat_gateway:
        state: "{{STATE}}"
-       subnet_id: "{{public-subnet-2_result.subnet-id}}"
+       subnet_id: "{{public_subnet_2_result.subnet-id}}"
        wait: true
        region: "{{REGION}}"
-     register: nat-gateway_result
+     register: nat_gateway_result
 
    - name: Set up public subnets route table
      ec2_vpc_route_table:
@@ -105,8 +105,8 @@
        tags:
          Name: Public
        subnets:
-        - "{{public-subnet-1_result.subnet-id}}"
-        - "{{public-subnet-2_result.subnet-id}}"
+        - "{{public_subnet_1_result.subnet-id}}"
+        - "{{public_subnet_2_result.subnet-id}}"
        routes:
         - dest: 0.0.0.0/0
           gateway_id: "{{ igw_result.gateway_id }}"
@@ -119,11 +119,11 @@
        tags:
          Name: Private
        subnets:
-        - "{{private-subnet-1_result.subnet-id}}"
-        - "{{private-subnet-2_result.subnet-id}}"
+        - "{{private_subnet_1_result.subnet-id}}"
+        - "{{private_subnet_2_result.subnet-id}}"
        routes:
         - dest: 0.0.0.0/0
-          gateway_id: "{{ nat-gateway_result.nat_gateway_id }}"
+          gateway_id: "{{ nat_gateway_result.nat_gateway_id }}"
      register: Private_route_table
 
    - debug:
