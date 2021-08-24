@@ -13,12 +13,12 @@
 
     # Subnet details
     PUBLIC_SUBNETS_NAME: Public-subnet
-    PUBLIC_SUBNETS-1_CIDR: 10.10.0.0/24
-    PUBLIC_SUBNETS-2_CIDR: 10.10.1.0/24
+    PUBLIC_SUBNETS_1_CIDR: 10.10.0.0/24
+    PUBLIC_SUBNETS_2_CIDR: 10.10.1.0/24
 
     PRIVATE_SUBNETS_NAME: Private-subnet
-    PRIVATE_SUBNETS-1_CIDR: 10.10.2.0/24
-    PRIVATE_SUBNETS-2_CIDR: 10.10.3.0/24
+    PRIVATE_SUBNETS_1_CIDR: 10.10.2.0/24
+    PRIVATE_SUBNETS_2_CIDR: 10.10.3.0/24
 
 # DO NOT CHANGE ANY LINE AFTER THIS !!!
 
@@ -47,7 +47,7 @@
        region: "{{REGION}}"
        state: "{{STATE}}"
        vpc_id: "{{ vpc_net_result.vpc.id }}"
-       cidr: "{{PUBLIC_SUBNETS-1_CIDR}}"
+       cidr: "{{PUBLIC_SUBNETS_1_CIDR}}"
        tags:
          Name: "{{PUBLIC_SUBNETS_NAME}}-1"
        az: ap-south-1a
@@ -59,7 +59,7 @@
        region: "{{REGION}}"
        state: "{{STATE}}"
        vpc_id: "{{ vpc_net_result.vpc.id }}"
-       cidr: "{{PUBLIC_SUBNETS-2_CIDR}}"
+       cidr: "{{PUBLIC_SUBNETS_2_CIDR}}"
        tags:
          Name: "{{PUBLIC_SUBNETS_NAME}}-2"
        az: ap-south-1b
@@ -71,7 +71,7 @@
        region: "{{REGION}}"
        state: "{{STATE}}"
        vpc_id: "{{ vpc_net_result.vpc.id }}"
-       cidr: "{{PRIVATE_SUBNETS-1_CIDR}}"
+       cidr: "{{PRIVATE_SUBNETS_1_CIDR}}"
        tags:
          Name: "{{PRIVATE_SUBNETS_NAME}}-1"
        az: ap-south-1a
@@ -83,7 +83,7 @@
        region: "{{REGION}}"
        state: "{{STATE}}"
        vpc_id: "{{ vpc_net_result.vpc.id }}"
-       cidr: "{{PRIVATE_SUBNETS-2_CIDR}}"
+       cidr: "{{PRIVATE_SUBNETS_2_CIDR}}"
        tags:
          Name: "{{PRIVATE_SUBNETS_NAME}}-2"
        az: ap-south-1b
@@ -128,3 +128,5 @@
 
    - debug:
        var: vpc_net_result
+
+
