@@ -93,7 +93,7 @@
    - name: Create new nat gateway and allocate new EIP.
      ec2_vpc_nat_gateway:
        state: "{{STATE}}"
-       subnet_id: "{{public_subnet_2_result.subnet-id}}"
+       subnet_id: "{{public_subnet_2_result.subnet.id}}"
        wait: true
        region: "{{REGION}}"
      register: nat_gateway_result
@@ -105,8 +105,8 @@
        tags:
          Name: Public
        subnets:
-        - "{{public_subnet_1_result.subnet-id}}"
-        - "{{public_subnet_2_result.subnet-id}}"
+        - "{{public_subnet_1_result.subnet.id}}"
+        - "{{public_subnet_2_result.subnet.id}}"
        routes:
         - dest: 0.0.0.0/0
           gateway_id: "{{ igw_result.gateway_id }}"
@@ -119,8 +119,8 @@
        tags:
          Name: Private
        subnets:
-        - "{{private_subnet_1_result.subnet-id}}"
-        - "{{private_subnet_2_result.subnet-id}}"
+        - "{{private_subnet_1_result.subnet.id}}"
+        - "{{private_subnet_2_result.subnet.id}}"
        routes:
         - dest: 0.0.0.0/0
           gateway_id: "{{ nat_gateway_result.nat_gateway_id }}"
