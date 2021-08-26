@@ -1,6 +1,6 @@
 - hosts: all
   become: true
-  # Parameter for creating lightsail instance
+  # Parameter for creating
   vars:
     # Global Vars
     STATE: present
@@ -11,7 +11,7 @@
     # Do not change after this line
 
   tasks:
-  - name: Upgrade all packages
+  - name: Upgrade/update all packages
     dnf:
       name: "*"
       state: latest
