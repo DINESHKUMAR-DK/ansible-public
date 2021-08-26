@@ -1,8 +1,8 @@
 - hosts: all
   # Parameter for creating 
+  become: true
   vars:
     # Global Vars
-    become: true
     STATE: present
     REGION: ap-south-1
 
@@ -11,19 +11,16 @@
     # Do not change after this line
 
   tasks:
-  - name: Update repositories cache and install "foo" package
-    become: true
+  - name: Update repositories cache
     apt:
       update_cache: yes
       force_apt_get: yes
 
   - name: Update all packages to their latest version
-    become: true
     apt:
       name: "*"
       state: latest
 
   - name: Remove dependencies that are no longer required
-    become: true
     apt:
       autoremove: yes
