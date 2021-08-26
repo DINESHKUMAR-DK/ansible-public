@@ -1,0 +1,19 @@
+- hosts: all
+  become: true
+  # Parameter for creating lightsail instance
+  vars:
+    # Global Vars
+    STATE: present
+    REGION: ap-south-1
+
+    # General Vars
+
+    # Do not change after this line
+
+  tasks:
+   - name: Install all security, critical, and rollup updates without a scheduled task
+     win_updates:
+       category_names:
+        - SecurityUpdates
+        #- CriticalUpdates
+       # - UpdateRollups
