@@ -1,0 +1,21 @@
+- hosts: all
+  become: true
+  # Parameter for creating lightsail instance
+  vars:
+    # Global Vars
+    STATE: present
+    REGION: ap-south-1
+
+    # General Vars
+
+    # Do not change after this line
+
+  tasks:
+  - name: Upgrade all packages
+    dnf:
+      name: "*"
+      state: latest
+
+  - name: Autoremove unneeded packages installed as dependencies
+    dnf:
+      autoremove: yes  
