@@ -1,5 +1,5 @@
 - hosts: all
-  # Parameter for creating lightsail instance
+  # Parameter for creating 
   vars:
     # Global Vars
     become: yes
@@ -12,9 +12,9 @@
 
   tasks:
 
-  - name: Update repositories cache and install "foo" package
-    apt:
-      update_cache: yes
+#   - name: Update repositories cache and install "foo" package
+#     apt:
+#       update_cache: yes
 
   - name: Update all packages to their latest version
     apt:
