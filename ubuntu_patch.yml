@@ -3,7 +3,6 @@
   vars:
     # Global Vars
     become: true
-    become_method: sudo
     STATE: present
     REGION: ap-south-1
 
