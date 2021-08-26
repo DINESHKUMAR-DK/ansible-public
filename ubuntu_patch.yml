@@ -2,6 +2,7 @@
   # Parameter for creating 
   vars:
     # Global Vars
+    become: true
     become_user: root
     STATE: present
     REGION: ap-south-1
@@ -11,10 +12,9 @@
     # Do not change after this line
 
   tasks:
-
-#   - name: Update repositories cache and install "foo" package
-#     apt:
-#       update_cache: yes
+  - name: Update repositories cache and install "foo" package
+     apt:
+       update_cache: yes
 
   - name: Update all packages to their latest version
     apt:
