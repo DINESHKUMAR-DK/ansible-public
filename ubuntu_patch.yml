@@ -18,10 +18,12 @@
       force_apt_get: yes
 
   - name: Update all packages to their latest version
+    become: true
     apt:
       name: "*"
       state: latest
 
   - name: Remove dependencies that are no longer required
+    become: true
     apt:
       autoremove: yes
