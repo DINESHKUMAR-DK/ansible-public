@@ -15,7 +15,7 @@
     dnf:
       name: "*"
       state: latest
-      update_only: false
+      update_only: true
       
 
   - name: Autoremove unneeded packages installed as dependencies
