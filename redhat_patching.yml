@@ -16,7 +16,10 @@
       name: "*"
       state: latest
       update_only: true
-      
+      # security yes means only security update will update
+      security: no
+  # Below Package name(s) to exclude when state=present, or latest. This can be a list or a comma separated string.
+      #exclude: apache2,nginx
 
   - name: Autoremove unneeded packages installed as dependencies
     dnf:
