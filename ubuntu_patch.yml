@@ -1,0 +1,25 @@
+- hosts: all
+  # Parameter for creating lightsail instance
+  vars:
+    # Global Vars
+    STATE: present
+    REGION: ap-south-1
+
+    # General Vars
+
+    # Do not change after this line
+
+  tasks:
+
+  - name: Update repositories cache and install "foo" package
+    apt:
+      update_cache: yes
+
+  - name: Update all packages to their latest version
+    apt:
+      name: "*"
+      state: latest
+
+  - name: Remove dependencies that are no longer required
+    apt:
+      autoremove: yes
