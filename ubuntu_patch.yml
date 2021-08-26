@@ -3,8 +3,7 @@
   vars:
     # Global Vars
     become: true
-    become_user: root
-    sudo: yes
+    become_method: sudo
     STATE: present
     REGION: ap-south-1
 
@@ -16,6 +15,7 @@
   - name: Update repositories cache and install "foo" package
     apt:
       update_cache: yes
+      force_apt_get: yes
 
   - name: Update all packages to their latest version
     apt:
