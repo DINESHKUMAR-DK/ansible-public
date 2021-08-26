@@ -13,8 +13,8 @@
 
   tasks:
   - name: Update repositories cache and install "foo" package
-     apt:
-       update_cache: yes
+    apt:
+      update_cache: yes
 
   - name: Update all packages to their latest version
     apt:
