@@ -2,6 +2,7 @@
   # Parameter for creating lightsail instance
   vars:
     # Global Vars
+    become: yes
     STATE: present
     REGION: ap-south-1
 
