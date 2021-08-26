@@ -4,6 +4,7 @@
     # Global Vars
     become: true
     become_user: root
+    sudo: yes
     STATE: present
     REGION: ap-south-1
 
